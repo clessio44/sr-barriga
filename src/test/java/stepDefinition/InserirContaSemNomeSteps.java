@@ -1,13 +1,20 @@
 package stepDefinition;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.cucumber.core.gherkin.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -46,7 +53,7 @@ public class InserirContaSemNomeSteps {
 		Assert.assertEquals("Bem vindo, user!", text);
 	}
 
-	@When("seleciono contas")
+	@When("seleciono contas") 
 	public void seleciono_contas() {
 		driver.findElement(By.xpath("//a[@class='dropdown-toggle']")).click();
 	}
@@ -66,8 +73,31 @@ public class InserirContaSemNomeSteps {
 	    String text = driver.findElement(By.xpath("//div[@class='alert alert-danger']")).getText();
 	    Assert.assertEquals("Informe o nome da conta", text);
 	}
+	@After
+	public void screenshot(Scenario scenario) {
+		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(file, new File("target//screenshots//"+ scenario.getName() +".jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	@AfterAll
 	public void close() {
 		driver.quit();
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
