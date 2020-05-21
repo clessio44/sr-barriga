@@ -18,7 +18,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 		,plugin = {"pretty", "html:target/report-html"} //relatório html
 )
 
-public class RunnerTest {
+public class RunnerTest { 
 	
 
 }

@@ -2,6 +2,7 @@ package stepDefinition;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
+import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -69,5 +70,9 @@ public class InserirContasSteps {
 	public void a_conta_e_inserida_com_sucesso() throws Throwable{
 	    String text2 = driver.findElement(By.xpath("//div[@class='alert alert-success']")).getText();
 	    Assert.assertEquals("Conta adicionada com sucesso!",text2);
+	}
+	@AfterAll
+	public void close() {
+		driver.quit();
 	}
 }

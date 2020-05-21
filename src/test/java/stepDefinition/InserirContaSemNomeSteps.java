@@ -3,6 +3,7 @@ package stepDefinition;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
+import org.junit.jupiter.api.AfterAll;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -64,5 +65,9 @@ public class InserirContaSemNomeSteps {
 	public void sou_notificado_que_o_nome_da_conta_e_obrigatorio() {
 	    String text = driver.findElement(By.xpath("//div[@class='alert alert-danger']")).getText();
 	    Assert.assertEquals("Informe o nome da conta", text);
+	}
+	@AfterAll
+	public void close() {
+		driver.quit();
 	}
 }
